@@ -21,7 +21,7 @@ public class Cinema {
 
             switch (choice) {
                 case 1:
-                    printTheatre();
+                    printCinema();
                     break;
                 case 2:
                     ticketPrice();
@@ -63,16 +63,16 @@ public class Cinema {
             }
     }
 
-    public static void printTheatre() {
+    public static void printCinema() {
         System.out.println("Cinema:");
         System.out.print(" ");
         for (int i = 1; i <= seats; i++) {
             System.out.print(" " + i);
         }
         System.out.println();
-        for (int i = 0; i < theatre.length; i++) { // return rows
+        for (int i = 0; i < theatre.length; i++) { 
              System.out.printf("%d", i + 1);
-            for (int j = 0; j < theatre[i].length; j++) { //return columns
+            for (int j = 0; j < theatre[i].length; j++) { 
                 System.out.print(" " + theatre[i][j]);
             }
             System.out.println("");
@@ -81,22 +81,22 @@ public class Cinema {
 
     public static void ticketPrice() {
         int rowNum;
-        int sNum;
+        int seatNum;
         boolean free;
 
         while (true) {
             System.out.println("Enter a row number:");
             rowNum = Integer.parseInt(sc.nextLine());
             System.out.println("Enter a seat number in that row:");
-            sNum = Integer.parseInt(sc.nextLine());
+            seatNum = Integer.parseInt(sc.nextLine());
 
 
-            if (rowNum <= 0 || rowNum > theatre.length || sNum <= 0 || sNum > theatre[0].length) {
+            if (rowNum <= 0 || rowNum > theatre.length || seatNum <= 0 || seatNum > theatre[0].length) {
                  System.out.println("Wrong input!");
 
             } else {
-                if ("S".equals(theatre[rowNum - 1][sNum - 1])) {
-                   theatre[rowNum - 1][sNum - 1] = soldSeats;
+                if ("S".equals(theatre[rowNum - 1][seatNum - 1])) {
+                   theatre[rowNum - 1][seatNum - 1] = soldSeats;
                    int ticketPrice = theatre.length * theatre[0].length <= 60 ? 10 : rowNum <= theatre.length / 2 ? 10 : 8;
                    System.out.printf("Ticket price: $%d\n", ticketPrice);
                    break;
@@ -129,8 +129,6 @@ public class Cinema {
                 }
             }
         }
-
-
         percentage = (double) purchasedTickets / (theatre.length * theatre[0].length) * 100;
 
         System.out.println("\nNumber of purchased tickets: " + purchasedTickets);
